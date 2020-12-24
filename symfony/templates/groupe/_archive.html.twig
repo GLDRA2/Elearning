@@ -1,0 +1,52 @@
+<div id="accordion">
+    {% for activity in groupe.cours.activity %}
+    <div class="card">
+        <div class="card-header" id="headingOne" style="background-color: #002347">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#{{ activity.name }}" aria-expanded="true"
+                aria-controls="{{ activity.name }}">
+                <h5 style="color: white; text-transform: uppercase">
+                    <strong>{{ activity.name }}</strong>
+                </h5>
+            </button>
+        </div>
+
+        <div id="{{ activity.name }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                {{ activity.description }}
+            
+                <br /><br />
+                <div class="card border-warning mb-3">
+                    <div class="card-body">
+                        {% for depot in activity.depot %}
+                    <table class="table table-striped">
+                    
+                        <thead>
+                            <tr>
+                                <th colspan="3" style="color: #ff9100f6; text-transform: uppercase">{{depot.description }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                     {% for archive in depot.archives %}
+                   
+                        <tr>
+                            <td>{{ archive.user.username }} </td>
+                            <td>{{ archive.name }}</td>
+                            <td>
+                                <a href="{{ asset('uploads/') }}{{ archive.file }}" download="{{ archive.name }}.pdf">
+                                    <i class="fa fa-file-pdf-o fa-lg" style="color: red"></i>
+                                {{ archive.name }}</a>
+                            </td> 
+                         
+                        </tr>
+                     {% endfor %}
+                        </tbody>
+                        </table>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    {% endfor %}
+</div>

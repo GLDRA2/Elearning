@@ -1,0 +1,25 @@
+{% for section in groupe.cours.sections %}
+<!-- single course -->
+<h4 style="background-color: #002347; color: rgb(255, 255, 255)">
+  <strong>{{ section.title }}</strong>
+</h4>
+<table class="table table-hover">
+  {% for pdf in section.uploads %}{% if pdf.filepdf is not null and
+  pdf.filepdf|trim is not empty %}
+  <tbody>
+    <tr class="table">
+      <th scope="row">{{ pdf.title }}</th>
+      <td>Creation Date</td>
+      <td>
+        <a
+          href="{{ asset('uploads/') }}{{ pdf.filepdf }}"
+          download="{{ pdf.title }}.pdf"
+        >
+          <i class="fa fa-file-pdf-o fa-lg" style="color: red"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+  {% endif %} {% endfor %}
+</table>
+{% endfor %}

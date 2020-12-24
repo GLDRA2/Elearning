@@ -1,0 +1,21 @@
+{% for section in groupe.cours.sections %}
+<h4 style="background-color: #002347; color: rgb(255, 255, 255)">
+  <strong>{{ section.title }}</strong>
+</h4>
+<br />
+
+{% for activity in section.activities %} {% if activity.file is not null and
+activity.file|trim is not empty %}
+
+<div class="card border-warning mb-5">
+  <div class="card-header">{{ activity.name }}</div>
+  {% for depot in activity.depot %}
+  <div class="card-body" align="left">
+    <i class="fa fa-cloud-download-alt fa-lg" style="color: red"></i>
+    <a href="{{ path('depot_archive', { id: depot.id }) }}">
+      {{ depot.description }}
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endif %} {% endfor %} {% endfor %}

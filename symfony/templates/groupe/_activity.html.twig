@@ -1,0 +1,27 @@
+{% for section in groupe.cours.sections %}
+<h4 style="background-color: #002347; color: rgb(255, 255, 255)">
+  <strong>{{ section.title }}</strong>
+</h4>
+<br />
+
+{% for activity in section.activities %} {% if activity.file is not null and
+activity.file|trim is not empty %}
+
+<div class="card border-warning mb-5">
+  <div class="card-header">{{ activity.name }}</div>
+  <div class="card-body">
+    <h4 class="card-title">
+      <a
+        href="{{ asset('uploads/') }}{{ activity.file }}"
+        download="{{ activity.name }}.pdf"
+      >
+        <i class="fa fa-file-pdf-o fa-lg" style="color: red"></i>
+        {{ activity.name }}
+      </a>
+    </h4>
+    <p class="card-text">
+      {{ activity.description }}
+    </p>
+  </div>
+</div>
+{% endif %} {% endfor %} {% endfor %}

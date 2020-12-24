@@ -1,0 +1,39 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DoctrineMigrations;
+
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\AbstractMigration;
+
+/**
+ * Auto-generated Migration: Please modify to your needs!
+ */
+final class Version20201222210708 extends AbstractMigration
+{
+    public function getDescription() : string
+    {
+        return '';
+    }
+
+    public function up(Schema $schema) : void
+    {
+        // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE archive ADD user_id INT NOT NULL, ADD depot_id INT NOT NULL');
+        $this->addSql('ALTER TABLE archive ADD CONSTRAINT FK_D5FC5D9CA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE archive ADD CONSTRAINT FK_D5FC5D9C8510D4DE FOREIGN KEY (depot_id) REFERENCES depot (id)');
+        $this->addSql('CREATE INDEX IDX_D5FC5D9CA76ED395 ON archive (user_id)');
+        $this->addSql('CREATE INDEX IDX_D5FC5D9C8510D4DE ON archive (depot_id)');
+    }
+
+    public function down(Schema $schema) : void
+    {
+        // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE archive DROP FOREIGN KEY FK_D5FC5D9CA76ED395');
+        $this->addSql('ALTER TABLE archive DROP FOREIGN KEY FK_D5FC5D9C8510D4DE');
+        $this->addSql('DROP INDEX IDX_D5FC5D9CA76ED395 ON archive');
+        $this->addSql('DROP INDEX IDX_D5FC5D9C8510D4DE ON archive');
+        $this->addSql('ALTER TABLE archive DROP user_id, DROP depot_id');
+    }
+}

@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="{{ asset('css/list_user.css') }}" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+<div class="container">
+<div class="row">
+  {% for user in user %}
+  {% for role in user.roles %}
+  {% if role == "ROLE_TEACHER" %}
+
+    <div class="col-lg-4">
+        <div class="card card-one">
+            <div class="header">
+                <div class="avatar">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
+                </div>
+            </div>
+            <h3>  {{ user.username }}</h3>
+            <div class="desc">
+            {{ user.email }}
+            </div>
+            <div class="contacts">
+                <a href="#"><i class="fas fa-plus"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+                <div class="clear"></div>
+            </div>
+            <div class="footer">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+   
+             {% endif %}
+
+          {% endfor %}
+
+      {% endfor %}
+</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container">
+  {% for groupe in app.user.groupe %}
+  <div class="card border-warning mb-5" style="width: 500; height: 500">
+    <div class="card-header">
+      <h4 class="card-title">{{ groupe.name }}</h4>
+    </div>
+    <div class="card-body">
+      {% if groupe.cours.image is not null and groupe.cours.image|trim is not
+      empty %}
+
+      <img
+        src="{{ asset('uploads/') }}{{ groupe.cours.image }}"
+        height="300"
+        width="400"
+        style="border-radius: 15px; float: center"
+      />
+
+      {% else %}
+
+      <img
+        src="//placeimg.com/280/180/tech"
+        height="300"
+        width="400"
+        style="border-radius: 15px; float: center"
+      />
+
+      {% endif %}
+
+      <p class="card-text">
+        {{ groupe.cours.description }}
+      </p>
+      <a
+        href="{{ path('groupe_show', { id: groupe.id }) }}"
+        class="btn btn-sm btn-warning float-right"
+        >Read more <i class="fas fa-angle-double-right"></i
+      ></a>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>

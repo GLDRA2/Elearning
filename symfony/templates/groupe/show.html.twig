@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %} {% block title %}Groupe{% endblock %} {% block
+body %} {% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/cour_profil.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/groupe1.css') }}" />
+
+{% endblock %}
+
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+  <div class="banner_inner d-flex align-items-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="banner_content text-center">
+            <h2 class="text-warning" style="text-transform: uppercase">
+              <strong>{{ groupe.cours.name }}</strong>
+            </h2>
+            <div class="page_link">
+              <a href="index.html" class="text-warning">COURS</a>
+              <a href="courses.html" class="text-warning">COURS PROFIL</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--================End Home Banner Area =================-->
+
+<div class="container-fluid" >
+  
+  <div class="row">
+    <!--================Side Nav =================-->
+   
+    {% include "groupe/_side_nav.html.twig" %}
+  
+    <!--==========================================-->
+
+    <div class="col-md-10 col-sm-8 main-content" >
+      <br />
+      <!--================Main Menu =================-->
+      <div class="container" >
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#Vedio">Vedio</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#Document">Document</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#Activity">Activity</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#Depot">Depot</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#TASK">Task</a>
+          </li>
+          {% if is_granted('ROLE_TEACHER') %}
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#Archive">Archive</a>
+          </li>
+          {% endif %}
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+          <!--================Vedio show =================-->
+          <div class="tab-pane fade active show" id="Vedio">
+            <br />
+            {% include "groupe/_vedio.html.twig" %}
+          </div>
+          <!--==========================================-->
+          <!--================Document show =================-->
+          <div class="tab-pane fade" id="Document">
+            <br />
+            {% include "groupe/_document.html.twig" %}
+          </div>
+          <!--==========================================-->
+          <!--================Activity show =================-->
+          <div class="tab-pane fade" id="Activity">
+            <br />
+            {% include "groupe/_activity.html.twig" %}
+          </div>
+          <!--==========================================-->
+          <!--================Depot show =================-->
+          <div class="tab-pane fade" id="Depot">
+            <br />
+            {% include "groupe/_depot.html.twig" %}
+          </div>
+          <!--==========================================-->
+          <!--================TASK show =================-->
+          <div class="tab-pane fade" id="TASK">
+            <br />
+            {% include "groupe/_task.html.twig" %}
+          </div>
+          <!--==========================================-->
+            <!--================Show Archive=================-->
+            {% if is_granted('Role_TEACHER') %}
+            <div class="tab-pane fade" id="Archive">
+              <br />
+              {% include "groupe/_archive.html.twig" %}
+            </div>
+            {% endif %}
+            <!--==========================================-->
+        </div>
+      </div>
+      <!--==========================================-->
+    </div>
+  </div>
+</div>
+
+{# <a href="{{ path('groupe_index') }}">back to list</a>
+
+<a href="{{ path('groupe_edit', { id: groupe.id }) }}">edit</a>
+
+{{ include("groupe/_delete_form.html.twig") }} #} {% endblock %} 
+{% block JavaScript %} 
+<script src="{{ asset('js/groupe1.js') }}"></script>
+{% endblock %}

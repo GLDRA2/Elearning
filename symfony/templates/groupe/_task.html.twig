@@ -1,0 +1,59 @@
+<div id="accordion">
+  {% for task in groupe.cours.tasks %}
+  <div class="card">
+    <div class="card-header" id="headingOne" style="background-color: #002347">
+      <button
+        class="btn btn-link"
+        data-toggle="collapse"
+        data-target="#{{ task.title }}"
+        aria-expanded="true"
+        aria-controls="{{ task.title }}"
+      >
+        <h5 style="color: white; text-transform: uppercase">
+          <strong>{{ task.title }}</strong>
+        </h5>
+      </button>
+    </div>
+
+    <div
+      id="{{ task.title }}"
+      class="collapse"
+      aria-labelledby="headingOne"
+      data-parent="#accordion"
+    >
+      <div class="card-body">
+        {{ task.description }}
+        <br /><br />
+        <div class="card border-warning mb-3">
+          <div class="card-body">
+            {% for question in task.questions %}
+
+            <p style="text-align: left">{{ question.questiontitle }}</p>
+            <form
+              name="answer"
+              action="{{ path('question_answer', { id: question.id }) }}"
+              method="post"
+            >
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  id="answer_confirm"
+                  name="answer[confirm]"
+                  placeholder="answer"
+                  class="form-control"
+                />
+                <div class="input-group-append">
+                  <button class="btn btn-warning">submit</button>
+                </div>
+              </div>
+            </form>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  {% endfor %}
+</div>

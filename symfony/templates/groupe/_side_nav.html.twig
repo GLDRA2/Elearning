@@ -1,0 +1,86 @@
+
+<div class="col-md-2 col-sm-4 sidebar1">
+  <br />
+  <br />
+  <div class="left-navigation">
+    {% if is_granted('ROLE_TEACHER') %}
+    <ul class="list">
+      <h5><i class="fas fa-tasks fa-x"></i> <strong>TASKS</strong></h5>
+      <li>
+        <a
+          href="{{ path('section_new', { id: groupe.cours.id }) }}"
+          style="color: white"
+          >ADD Section
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="{{ path('upload_new', { id: groupe.cours.id }) }}"
+          style="color: white"
+          >ADD Article</a
+        >
+      </li>
+      <li>
+        <a
+          href="{{ path('activity_new', { id: groupe.cours.id }) }}"
+          style="color: white"
+          >ADD Activity
+        </a>
+      </li>
+      <li>
+        <a href="{{ path('cour_new') }}" style="color: white">ADD Depot </a>
+      </li>
+      <li>
+        <a href="{{ path('cour_new') }}" style="color: white">ADD Task </a>
+      </li>
+      <li>
+        <a href="{{ path('cour_new') }}" style="color: white"
+          >ADD Question for Task
+        </a>
+      </li>
+      <li>
+        <a
+          href="{{ path('cour_edit', { id: groupe.cours.id }) }}"
+          style="color: white"
+          >Update Cour</a
+        >
+      </li>
+      <li>
+        <a
+          href="{{ path('groupe_update', { id: groupe.id }) }}"
+          style="color: white"
+          >Update Groupe</a
+        >
+      </li>
+    </ul>
+    {% endif %}
+      
+    <!--==========================================-======================================-->
+    <div id="left" >
+      <ul class="nav menu">
+          <li class="item-8 "> 
+           <a><h5 class="lbl" style="font-size:20px; ">
+              <span data-toggle="collapse" href="#sub-item-8" class="sign fas fa-users " >&nbspGroup</h5>
+            </a>
+            {% for user in groupe.users %}
+            <ul class="children nav-child unstyled small " id="sub-item-8">
+              <li>
+                <a href="#">
+                  <span class="lbl" style="font-weight:bold; font-size:18px; color: white">{{ user.username }}</span>
+                </a>
+              </li>
+            </ul>
+            {% endfor %}
+          </li>
+          </ul>
+          </div>
+       
+    
+<!--==========================================-======================================-->
+
+  </div>
+</div>
+
+
+
